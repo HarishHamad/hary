@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+img{
+    width: 90px;    
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.girl{
+    width: 1550px;
 }
+#har{
+margin-left: 900px;
+}
+input{
+    border-radius: 20px;
+}
+#as{
+   margin-left: 650px;
+   margin-top: 90px;
+}
+h1{
+    text-align: center;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+}
+.main {
+    margin-top: 150px;
+}
+.maina {
+    margin-top: 50px;
+}
+#hh{
+    margin-top: 10px;
+}
+.footer {
+    background-color: rgb(41, 41, 41);
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 5vh;
   }
+  
+.bg{
+    height: 81vh;
+    
+}
+.logout{
+    margin-left: 859px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Addbg{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+._container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: fit-content;
+    border-radius: 10px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.welcome{
+    color: red;
+    background-image: url('../src/component/girl.jpg');
+    height: 610px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .5;
+ 
 }
