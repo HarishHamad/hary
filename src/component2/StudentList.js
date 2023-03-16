@@ -13,7 +13,9 @@ export default class StudentList extends Component {
       email:'',
       collegeId:'',
       mobileNo:'',
+      dob:'',
       id:''
+
       
     }
   }
@@ -64,6 +66,7 @@ export default class StudentList extends Component {
                     <td>{item.email}</td>
                     <td>{item.collegeId}</td>
                     <td>{item.mobileNo}</td>
+                   
                     <td> <Link  to={ "/addstudent/" + item.id } >Edit</Link>
                     </td>
                     <td>

@@ -93,7 +93,7 @@ class AddMarksheet extends Component {
       axios.post(url, this.state).then((response) => {
         this.setState({ list: response.data.result });
         // console.log(response.data.inputerror)
-        alert("Marksheet Added successfully")
+        alert("Marksheet Added successfully");
 
         if (response.data.result.inputerror && this.state.name === "") {
           this.setState({

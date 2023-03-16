@@ -12,6 +12,7 @@ class AddStudent extends Component {
       email: "",
       collegeId: "",
       mobileNo: "",
+     
       id: "",
       inputerror: {
         firstName: "",
@@ -20,6 +21,7 @@ class AddStudent extends Component {
         collegeId: "",
         mobileNo: "",
         id: "",
+        
       },
     };
     if (this.props.params.id) {
@@ -39,6 +41,7 @@ class AddStudent extends Component {
         collegeId: res.data.result.data.collegeId,
         mobileNo: res.data.result.data.mobileNo,
         id: res.data.result.data.id,
+        
       });
     });
   }
@@ -181,6 +184,8 @@ class AddStudent extends Component {
                     </td>
                   </tr>
 
+                 
+                 
                   <tr className="form-outline mb-4">
                     <td className="form-label" htmlFor="mobno">
                       Mob Number
@@ -204,6 +209,7 @@ class AddStudent extends Component {
                       <p className="text-danger text-nowrap">{this.state.inputerror.mobileNo}</p>
                     </td>
                   </tr>
+
                   <tr className="text-center">
                     <td colSpan={2}>
                       {" "}

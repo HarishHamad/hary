@@ -4,6 +4,8 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
+import App2 from "../App2";
+
 export default class Login extends Component {
   constructor() {
     super();
@@ -20,25 +22,33 @@ export default class Login extends Component {
   submit(event) {
     event.preventDefault();
     const url = "http://api.sunilos.com:9080/ORSP10/Auth/login";
-    axios.post(url, this.state).then((response) => {
-      console.log(response.data);
-      if (response.data.success) {
-        localStorage.setItem("token",response.data.result.data.name)
-        console.log(response);
-        const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(
-          window.location.href = "/"
-        );
-      } else {
-        console.log(response.data.result.inputerror);
-        this.setState({
-          inputerror: {
-            password: response.data.result.inputerror.password,
-            loginId: response.data.result.inputerror.loginId,
-          },
-        });
-      }
-    });
+    axios
+      .post(url, this.state)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          localStorage.setItem("token", response.data.result.data.name);
+          console.log(response);
+          const root = ReactDOM.createRoot(document.getElementById("root"));
+          root.render(
+            <React.StrictMode>
+              <App2 />
+            </React.StrictMode>
+          );
+        } else {
+          console.log(response.data.result.inputerror);
+          this.setState({
+            inputerror: {
+              password: response.data.result.inputerror.password,
+              loginId: response.data.result.inputerror.loginId,
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err.name + " " + err.message);
+        this.setState({ message: err.name });
+      });
   }
 
   reset() {
@@ -56,67 +66,81 @@ export default class Login extends Component {
   render() {
     return (
       <div className="bg">
-      <div className="center">
-        <h1>
-          <u>Login</u>
-        </h1>
-        <form
-          onSubmit={(event) => {
-            this.submit(event);
-          }}
-        >
-          <div className="txt_field">
-            <input
-              type="text"
-              name="loginId"
-              id="email"
-              onChange={(event) => {
-                this.setState({ loginId: event.target.value });
-              }}
-              required
-            />
-            <span></span>
-            <label htmlFor="email">Email Id</label>
-            <br />
+        <div className="center">
+          <h1>
+            <u>Login</u>
 
-            <p style={{ color: "red" }}>{this.state.inputerror.loginId}</p>
-          </div>
-          <div className="txt_field">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={(event) => {
-                this.setState({ password: event.target.value });
-              }}
-              required
-            />{" "}
-            <br />
-            <span></span>
-            <label htmlFor="password">Password</label>
-            <p style={{ color: "red" }}>{this.state.inputerror.password}</p>
-          </div>
-          <div>
+            <p style={{ color: "red", textAlign: "center", fontSize: "18px" }}>
+              {this.state.message}
+            </p>
+          </h1>
+          <form
+            onSubmit={(event) => {
+              this.submit(event);
+            }}
+          >
+            <div className="txt_field">
+              <input
+                type="text"
+                name="loginId"
+                id="email"
+                onChange={(event) => {
+                  this.setState({ loginId: event.target.value });
+                }}
+                required
+              />
+              <span></span>
+              <label htmlFor="email">Email Id</label>
+              <br />
+
+              <p style={{ color: "red" }}>{this.state.inputerror.loginId}</p>
+            </div>
+            <div className="txt_field">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={(event) => {
+                  this.setState({ password: event.target.value });
+                }}
+                required
+              />{" "}
+              <br />
+              <span></span>
+              <label htmlFor="password">Password</label>
+              <p style={{ color: "red" }}>{this.state.inputerror.password}</p>
+            </div>
+            <div>
+              <button
+                className="button"
+                type="submit"
+                onClick={(event) => {
+                  this.submit(event);
+                }}
+              >
+                login
+              </button>
+            </div>
+
             <button
-              className="button"
-              type="submit"
+              className="button "
+              type="reset"
               onClick={(event) => {
-                this.submit(event);
+                this.reset(event);
               }}
             >
-              login
+              Reset
             </button>
-          </div>
 
-          <div>
-            <button className="button" type="submit">
-              <Link id="ll" to="/registration">
-                Creat New Account
-              </Link>
-            </button>
-          </div>
-        </form>
-      </div>
+            <div>
+              <button className="button" type="submit">
+                <Link id="ll" to="/registration">
+                  Creat New Account
+                </Link>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
